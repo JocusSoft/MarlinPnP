@@ -1231,7 +1231,7 @@
 #endif
 
 #ifndef HOMING_BUMP_MM
-  #define HOMING_BUMP_MM { 0, 0, 0 }
+  #define HOMING_BUMP_MM { 0, 0, 0, 0 , 0 }
 #endif
 
 #if HAS_USB_FLASH_DRIVE && NONE(USE_OTG_USB_HOST, USE_UHS3_USB)

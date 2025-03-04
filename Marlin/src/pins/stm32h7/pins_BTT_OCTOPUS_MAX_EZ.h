@@ -51,9 +51,9 @@
 #define X_DIAG_PIN                          PF0   // M1-STOP
 #define Y_DIAG_PIN                          PF2   // M2-STOP
 #define Z_DIAG_PIN                          PF4   // M3-STOP
-#define Z2_DIAG_PIN                         PF3   // M4-DET
-#define E0_DIAG_PIN                         PF1   // M5-DET
-#define E1_DIAG_PIN                         PC15  // M6-DET
+#define Y2_DIAG_PIN                         PF3   // M4-DET
+#define I_DIAG_PIN                         PF1   // M5-DET
+#define J_DIAG_PIN                         PC15  // M6-DET
 #define E2_DIAG_PIN                         PF12  // PWRDET
 
 //
@@ -62,7 +62,7 @@
 #ifdef X_STALL_SENSITIVITY
   #define X_STOP_PIN                  X_DIAG_PIN
   #if X_HOME_TO_MIN
-    #define X_MAX_PIN                E0_DIAG_PIN  // M4-DET
+    #define X_MAX_PIN                X_DIAG_PIN  // M4-DET
   #else
     #define X_MIN_PIN                E0_DIAG_PIN  // M4-DET
   #endif
@@ -80,7 +80,7 @@
 #ifdef Y_STALL_SENSITIVITY
   #define Y_STOP_PIN                  Y_DIAG_PIN
   #if Y_HOME_TO_MIN
-    #define Y_MAX_PIN                E1_DIAG_PIN  // M5-DET
+    #define Y_MAX_PIN                E2_DIAG_PIN  // M5-DET
   #else
     #define Y_MIN_PIN                E1_DIAG_PIN  // M5-DET
   #endif
@@ -93,6 +93,10 @@
   #endif
 #else
   #define Y_STOP_PIN                  Y_DIAG_PIN  // Y-STOP
+#endif
+
+#ifdef Y2_STALL_SENSITIVITY
+#define Y2_STOP_PIN                  Y2_DIAG_PIN
 #endif
 
 #ifdef Z_STALL_SENSITIVITY
@@ -111,6 +115,42 @@
   #endif
 #else
   #define Z_STOP_PIN                  Z_DIAG_PIN  // Z-STOP
+#endif
+
+#ifdef J_STALL_SENSITIVITY
+  #define J_STOP_PIN                  J_DIAG_PIN
+  #if J_HOME_TO_MIN
+    #define J_MAX_PIN                E2_DIAG_PIN  // PWRDET
+  #else
+    #define J_MIN_PIN                E2_DIAG_PIN  // PWRDET
+  #endif
+#elif NEEDS_J_MINMAX
+  #ifndef J_MIN_PIN
+    #define J_MIN_PIN                 J_DIAG_PIN  // Z-STOP
+  #endif
+  #ifndef J_MAX_PIN
+    #define J_MAX_PIN                E2_DIAG_PIN  // PWRDET
+  #endif
+#else
+  #define J_STOP_PIN                  J_DIAG_PIN  // Z-STOP
+#endif
+
+#ifdef I_STALL_SENSITIVITY
+  #define I_STOP_PIN                  I_DIAG_PIN
+  #if I_HOME_TO_MIN
+    #define I_MAX_PIN                E2_DIAG_PIN  // PWRDET
+  #else
+    #define I_MIN_PIN                E2_DIAG_PIN  // PWRDET
+  #endif
+#elif NEEDS_I_MINMAX
+  #ifndef I_MIN_PIN
+    #define I_MIN_PIN                 I_DIAG_PIN  // Z-STOP
+  #endif
+  #ifndef I_MAX_PIN
+    #define I_MAX_PIN                E2_DIAG_PIN  // PWRDET
+  #endif
+#else
+  #define I_STOP_PIN                  I_DIAG_PIN  // Z-STOP
 #endif
 
 //
@@ -157,25 +197,25 @@
   #define Z_CS_PIN                          PG12
 #endif
 
-#define Z2_STEP_PIN                         PB8   // MOTOR 4
-#define Z2_DIR_PIN                          PB9
-#define Z2_ENABLE_PIN                       PB7
-#ifndef Z2_CS_PIN
-  #define Z2_CS_PIN                         PG11
+#define Y2_STEP_PIN                         PB8   // MOTOR 4
+#define Y2_DIR_PIN                          PB9
+#define Y2_ENABLE_PIN                       PB7
+#ifndef Y2_CS_PIN
+  #define Y2_CS_PIN                         PG11
 #endif
 
-#define E0_STEP_PIN                         PB5   // MOTOR 5
-#define E0_DIR_PIN                          PB4
-#define E0_ENABLE_PIN                       PB6
-#ifndef E0_CS_PIN
-  #define E0_CS_PIN                         PG10
+#define I_STEP_PIN                         PB5   // MOTOR 5
+#define I_DIR_PIN                          PB4
+#define I_ENABLE_PIN                       PB6
+#ifndef I_CS_PIN
+  #define I_CS_PIN                         PG10
 #endif
 
-#define E1_STEP_PIN                         PG15  // MOTOR 6
-#define E1_DIR_PIN                          PB3
-#define E1_ENABLE_PIN                       PD5
-#ifndef E1_CS_PIN
-  #define E1_CS_PIN                         PG9
+#define J_STEP_PIN                         PG15  // MOTOR 6
+#define J_DIR_PIN                          PB3
+#define J_ENABLE_PIN                       PD5
+#ifndef J_CS_PIN
+  #define J_CS_PIN                         PG9
 #endif
 
 #define E2_STEP_PIN                         PD3   // MOTOR 7
