@@ -3585,6 +3585,23 @@
 // @section cnc
 
 /**
+ * OpenPnp Control
+ */
+#define OPENPNP_FEATURES
+
+#if ENABLED(OPENPNP_FEATURES)
+
+#define OPENPNP_PUMP_COUNT 1
+#define OPENPNP_PUMP_PWM 1
+
+#define OPENPNP_VALVE_0 1
+#define OPENPNP_VALVE_1 1
+#define OPENPNP_VALVE_2 0
+#define OPENPNP_VALVE_3 0
+
+#endif //OPENPNP_FEATURES
+
+/**
  * Spindle & Laser control
  *
  * Add the M3, M4, and M5 commands to turn the spindle/laser on and off, and
